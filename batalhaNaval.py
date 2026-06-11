@@ -24,21 +24,26 @@ def tabuleiroVisivel(tabuleiro):
 
 def colocarBarcosJogador():
     contadorBarcos = 0
-    while contadorBarcos < 5:
-        print('Barco', contadorBarcos + 1)
-        X = int(input('digite a linha de 0 a 9:  '))
-        Y = int(input('digite a coluna de 0 a 9:  '))
-        if X >=0 and X <=9 and Y >=0 and Y <=9:
-             if tabuleiroJogadorReal[X][Y] == 0:
-                tabuleiroJogadorReal[X][Y] = 1
-                contadorBarcos += 1
-             else:
-                print('Ja existe um barco nessa posicao')
+    while contadorBarcos < 7:
+        X = (input('digite a linha de 0 a 9:  '))
+        Y = (input('digite a coluna de 0 a 9:  '))
+        if X == '0' or X == '1' or X == '2' or X == '3' or X == '4' or X == '5' or X == '6' or X == '7' or X == '8' or X == '9':
+            if Y == '0' or Y == '1' or Y == '2' or Y == '3' or Y == '4' or Y == '5' or Y == '6' or Y == '7' or Y == '8' or Y == '9':
+                X= int(X)
+                Y= int(Y)
+                if tabuleiroJogadorReal[X][Y] == 0:
+                    tabuleiroJogadorReal[X][Y] = 1
+                    contadorBarcos += 1
+                    tabuleiroVisivel(tabuleiroJogadorReal)
+                else:
+                    print('Ja existe um barco nessa posicao')
+            else:
+                print('coordenada invalida')
         else:
             print('coordenada invalida')
 def colocarBarcosRobo():
     contadorBarcos = 0
-    while contadorBarcos < 5:
+    while contadorBarcos < 7:
         X = random.randint(0,9)
         Y = random.randint(0,9)
         if tabuleiroMaquinaReal[X][Y] == 0:
@@ -64,8 +69,8 @@ def ataqueMaquina():
 
 def ataqueJogador():
     while True:
-        X = int(input('digite a linha de 0 a 9:  '))
-        Y = int(input('digite a coluna de 0 a 9:  '))
+        X = (input('digite a linha de 0 a 9:  '))
+        Y = (input('digite a coluna de 0 a 9:  '))
         if X == '0' or X == '1' or X == '2' or X == '3' or X == '4' or X == '5' or X == '6' or X == '7' or X == '8' or X == '9':
             if Y == '0' or Y == '1' or Y == '2' or Y == '3' or Y == '4' or Y == '5' or Y == '6' or Y == '7' or Y == '8' or Y == '9':
                 X= int(X)
@@ -79,10 +84,12 @@ def ataqueJogador():
                         print('Você nao acertou nenhum barco')
                         tabuleiroMaquinaVisivel[X][Y] = 'O'     
                         return 0 
+                else: 
+                    print('\nessa posicao ja foi atacada\n')
             else: 
-                    print('essa posicao ja foi atacada')
+                print('\ncoordenada invalida\n')
         else:
-                print('coordenada invalida')
+                print('\ncoordenada invalida\n')
     
 
 #chama o jogo(menu e logica do jogo + pontos)
@@ -96,17 +103,22 @@ def main():
 
     escolha= int(input('escolha uma opcao:\n'))
 
-    barcosJogador = 5
-    barcosMaquina = 5
+    barcosJogador = 7
+    barcosMaquina = 7
     if escolha == 1:
         colocarBarcosJogador()
         colocarBarcosRobo()
         while barcosJogador > 0 and barcosMaquina > 0:
 
             print('-----------------------------------------------------------------------------------------------------')
+            print('tabuleiro da jogador:')
+            tabuleiroVisivel(tabuleiroJogadorVisivel)
+            print('\n')
+
             print('Vez do jogador')
             print('tabuleiro da maquina:')
             tabuleiroVisivel(tabuleiroMaquinaVisivel)
+            print('-----------------------------------------------------------------------------------------------------')
             print('escolha onde atacar:')
             tiroJogador = ataqueJogador()
             tabuleiroVisivel(tabuleiroMaquinaVisivel)
@@ -117,6 +129,8 @@ def main():
                 print('faltam',barcosMaquina, ' barcos da maquina')
             if barcosMaquina == 0:
                 print('PARABENS!!\n Voce venceu')
+                print('Obrigado por jogar')
+                print('equipe: Vitor Skrypec')
                 break
 
             print('-----------------------------------------------------------------------------------------------------')
@@ -126,6 +140,8 @@ def main():
                 print('faltam',barcosJogador, 'barcos seus')
             if barcosJogador == 0:
                 print('PERDEU!!\n A maquina venceu ')
+                print('Obrigado por jogar')
+                print('equipe: Vitor Skrypec')
                 break
             print('Onde a maquina atacou')
             tabuleiroVisivel(tabuleiroJogadorVisivel)
@@ -139,6 +155,10 @@ def main():
 
     else:
         print('opcao invalida')
+        print('-----------------------------------------------------------------------------------------------------')
+        print('jogo fechado')
+        print('Obrigado por jogar')
+        print('equipe: Vitor Skrypec')
 
 # gera matriz do tabuleiro+ carrega jogo
 tabuleiroJogadorVisivel = criarTab()
