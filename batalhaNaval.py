@@ -66,20 +66,23 @@ def ataqueJogador():
     while True:
         X = int(input('digite a linha de 0 a 9:  '))
         Y = int(input('digite a coluna de 0 a 9:  '))
-        if X >=0 and X <=9 and Y >=0 and Y <=9:
-            if tabuleiroMaquinaVisivel[X][Y] == 0:
-                if tabuleiroMaquinaReal[X][Y] == 1:
-                    print('Você acertou um barco')
-                    tabuleiroMaquinaVisivel[X][Y] = 'X'
-                    return 1
-                else:
-                    print('Você nao acertou nenhum barco')
-                    tabuleiroMaquinaVisivel[X][Y] = 'O'     
-                    return 0 
+        if X == '0' or X == '1' or X == '2' or X == '3' or X == '4' or X == '5' or X == '6' or X == '7' or X == '8' or X == '9':
+            if Y == '0' or Y == '1' or Y == '2' or Y == '3' or Y == '4' or Y == '5' or Y == '6' or Y == '7' or Y == '8' or Y == '9':
+                X= int(X)
+                Y= int(Y)
+                if tabuleiroMaquinaVisivel[X][Y] == 0:
+                    if tabuleiroMaquinaReal[X][Y] == 1:
+                        print('Você acertou um barco')
+                        tabuleiroMaquinaVisivel[X][Y] = 'X'
+                        return 1
+                    else:
+                        print('Você nao acertou nenhum barco')
+                        tabuleiroMaquinaVisivel[X][Y] = 'O'     
+                        return 0 
             else: 
-                print('essa posicao ja foi atacada')
+                    print('essa posicao ja foi atacada')
         else:
-            print('coordenada invalida')
+                print('coordenada invalida')
     
 
 #chama o jogo(menu e logica do jogo + pontos)
