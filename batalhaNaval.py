@@ -135,6 +135,7 @@ def main():
          print('-----------------------------------------------------------------------------------------------------')
          print('jogo fechado')
          print('Obrigado por jogar')
+         print('equipe: Vitor Skrypec')
 
     else:
         print('opcao invalida')
