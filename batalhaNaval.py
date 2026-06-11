@@ -24,7 +24,7 @@ def tabuleiroVisivel(tabuleiro):
 
 def colocarBarcosJogador():
     contadorBarcos = 0
-    while contadorBarcos < 7:
+    while contadorBarcos < 5:
         X = (input('digite a linha de 0 a 9:  '))
         Y = (input('digite a coluna de 0 a 9:  '))
         if X == '0' or X == '1' or X == '2' or X == '3' or X == '4' or X == '5' or X == '6' or X == '7' or X == '8' or X == '9':
@@ -43,7 +43,7 @@ def colocarBarcosJogador():
             print('coordenada invalida')
 def colocarBarcosRobo():
     contadorBarcos = 0
-    while contadorBarcos < 7:
+    while contadorBarcos < 5:
         X = random.randint(0,9)
         Y = random.randint(0,9)
         if tabuleiroMaquinaReal[X][Y] == 0:
@@ -103,8 +103,8 @@ def main():
 
     escolha= int(input('escolha uma opcao:\n'))
 
-    barcosJogador = 7
-    barcosMaquina = 7
+    barcosJogador = 5
+    barcosMaquina = 5
     if escolha == 1:
         colocarBarcosJogador()
         colocarBarcosRobo()
